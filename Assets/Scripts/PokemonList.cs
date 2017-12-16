@@ -19,7 +19,7 @@ public class PokemonList {
 		Spell secretion = new Spell ("Sécrétion", "Lancez une pièce. Si c'est face le Pokémon Actif de votre adversaire est maintenant Paralysé.", eNeeded, 10);
 		spells [0] = secretion;
 		Pokemon chenipan = new Pokemon ("Chenipan", 40, Spell.Type.Plant, spells);
-		list.Add ("chenipan", chenipan);
+		list.Add ("Chenipan", chenipan);
 
 
 		spells = new Spell[1];
@@ -29,6 +29,6 @@ public class PokemonList {
 		Spell pistoletAO = new Spell ("Pistolet à O", "", eNeeded, 30);
 		spells [0] = pistoletAO;
 		Pokemon ptitard = new Pokemon ("Ptitard", 60, Spell.Type.Water, spells);
-		list.Add ("ptitard", ptitard);
+		list.Add ("Ptitard", ptitard);
 	}
 }

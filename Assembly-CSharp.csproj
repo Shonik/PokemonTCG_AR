@@ -64,7 +64,6 @@
      <Compile Include="Assets\Scripts\Spell.cs" />
      <Compile Include="Assets\Scripts\SpellButtonController.cs" />
      <Compile Include="Assets\Scripts\SpellPanelController.cs" />
-     <Compile Include="Assets\Scripts\VirtualButtonScript.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />

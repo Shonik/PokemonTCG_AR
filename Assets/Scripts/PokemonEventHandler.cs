@@ -312,16 +312,69 @@ public class PokemonEventHandler : MonoBehaviour {
 			PanelController.gameFinished = true;
 			panel.GetComponent<PanelController> ().changeText ();
 		}
-		else
-		{
-			
-		}
 
 	}
-
-	public void VirtualButtonPressed(string pokemon)
+		
+	public void PokemonTouched(string name)
 	{
-		Debug.Log ("Vitual" + pokemon);
+		Debug.Log (name + " touched");
+		bool found = false;
+		if (PanelController.waitForNewActivePokemon)
+		{
+			Debug.Log ("Bon etat");
+			for (int i = 0; i < GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc.Count; ++i)
+			{
+				Debug.Log ("Banc : " + GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc [i].name);
+				Debug.Log ("Name : " + name);
+				if (name == GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc[i].name)
+				{
+					found = true;
+				}
+					
+			}
+
+			if (found)
+			{
+				panelConfirmation.GetComponent<PanelConfirmationController> ().askForConfirmation (name);
+			}
+			else
+			{
+				PanelController.askForNewActivePokemon = true;
+				panel.GetComponent<PanelController> ().changeText ();
+			}
+		}
+		else 
+		{
+			Debug.Log ("Pas dans le bon etat");
+		}
+	}
+
+	public void AddNewActivePokemon(string pokemon)
+	{
+		if (PanelConfirmationController.yesButtonPressed)
+		{
+			Pokemon p = null;
+			for (int i = 0; i < GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc.Count; ++i)
+			{
+				if (name == GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc[i].name)
+				{
+					p = GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc [i];
+				}
+
+			}
+
+			GameObject.Find (panel.GetComponent<PanelController>().enemyPlayer).GetComponent<PlayerScript> ().AddPokemonBancPlayer(p);
+			PanelController.waitForNewActivePokemon = false;
+			PanelController.activePokemonDead = false;
+			PanelController.askForNewActivePokemon = true;
+			panel.GetComponent<PanelController> ().changeText ();
+
+
+		}
+		else if (PanelConfirmationController.noButtonPressed)
+		{
+			panel.GetComponent<PanelController> ().changeText ();
+		}
 	}
 
 	// Use this for initialization

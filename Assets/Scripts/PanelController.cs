@@ -162,7 +162,7 @@ public class PanelController : MonoBehaviour {
 			text.text = enemyPlayer + " : selectionnez un de vos Pokemon de banc pour en faire votre Pokemon actif.";
 			waitForNewActivePokemon = true;
 		}
-		if (waitForNewActivePokemon)
+		else if (waitForNewActivePokemon)
 		{
 			gameObject.SetActive (false);
 			pokemonEventHandler.WaitForNewActivePokemon ();

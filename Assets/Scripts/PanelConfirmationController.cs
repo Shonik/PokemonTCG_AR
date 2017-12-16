@@ -56,9 +56,9 @@ public class PanelConfirmationController : MonoBehaviour {
 		{
 			pokemonEventHandler.AddBancPokemon (pokemon);
 		}
-		else if (PanelController.addingBancPoke)
+		else if (PanelController.waitForNewActivePokemon)
 		{
-			pokemonEventHandler.AddBancPokemon (pokemon);
+			pokemonEventHandler.AddNewActivePokemon (pokemon);
 		}
 	}
 
@@ -74,6 +74,10 @@ public class PanelConfirmationController : MonoBehaviour {
 		else if (PanelController.waitingForBancPokemonP1 || PanelController.waitingForBancPokemonP2)
 		{
 			pokemonEventHandler.AddBancPokemon (pokemon);
+		}
+		else if (PanelController.waitForNewActivePokemon)
+		{
+			pokemonEventHandler.AddNewActivePokemon (pokemon);
 		}
 
 	}

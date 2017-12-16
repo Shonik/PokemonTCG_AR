@@ -34,6 +34,8 @@ public class PanelController : MonoBehaviour {
 	public static bool selectAction = false;
 	public static bool waitingForSelectAction = false;
 	public static bool addingBancPoke = false;
+	public static bool selectingPokemonForEnergy = false;
+	public static bool selectingEnergy = false;
 	public static bool askForAttacking = false;
 	public static bool selectingCapacity = false;
 	public static bool changingTurn = false;

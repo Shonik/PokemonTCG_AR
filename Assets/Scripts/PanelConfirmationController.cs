@@ -60,6 +60,10 @@ public class PanelConfirmationController : MonoBehaviour {
 		{
 			pokemonEventHandler.AddNewActivePokemon (pokemon);
 		}
+		else if (PanelController.selectingPokemonForEnergy)
+		{
+			pokemonEventHandler.MakeEnergyButtonsApear (pokemon);
+		}
 	}
 
 	void yesButtonClick()
@@ -78,6 +82,10 @@ public class PanelConfirmationController : MonoBehaviour {
 		else if (PanelController.waitForNewActivePokemon)
 		{
 			pokemonEventHandler.AddNewActivePokemon (pokemon);
+		}
+		else if (PanelController.selectingPokemonForEnergy)
+		{
+			pokemonEventHandler.MakeEnergyButtonsApear (pokemon);
 		}
 
 	}

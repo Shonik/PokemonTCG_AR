@@ -72,6 +72,10 @@ namespace Vuforia
 					{
 						pokemonEventHandler.PokemonTouched ("Chenipan");
 					}
+					else if (raycastHit.collider.name == "ImageTargetPtitard")
+					{
+						pokemonEventHandler.PokemonTouched ("Ptitard");
+					}
 				}
 			}
 		}

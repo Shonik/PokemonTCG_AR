@@ -24,7 +24,6 @@ public class Pokemon {
 
 		state = Pokemon.State.Normal;
 		energyAssigned = new List<Spell.Type> ();
-		addEnergy (Spell.Type.Plant);
 
 	}
 

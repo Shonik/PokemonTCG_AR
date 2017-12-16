@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class PokemonEventHandler : MonoBehaviour {
 
 	PokemonList pokemonList;
+	string selectedPokemonForEnergy;
 	public GameObject panel;
 	public GameObject panelConfirmation;
 	public GameObject buttonFinish;
+	public GameObject energyButtonGroup;
 
 	public GameObject buttonPokeBanc;
 	public GameObject buttonEvolPoke;
@@ -22,6 +24,7 @@ public class PokemonEventHandler : MonoBehaviour {
 	public List<GameObject> spellList;
 
 	public GameObject chenipanSpell;
+	public GameObject ptitardSpell;
 
 	public void PokemonDetected(string pokemon)
 	{
@@ -207,6 +210,60 @@ public class PokemonEventHandler : MonoBehaviour {
 		PanelController.addingBancPoke = true;
 	}
 
+	public void EnergyButtonClicked()
+	{
+		buttonPokeBanc.SetActive (false);
+		buttonEvolPoke.SetActive (false);
+		buttonEnergy.SetActive (false);
+		buttonTrainer.SetActive (false);
+		buttonRetreat.SetActive (false);
+		buttonSpecCap.SetActive (false);
+
+		PanelController.waitingForSelectAction = false;
+		PanelController.selectingPokemonForEnergy = true;
+	}
+
+	public void MakeEnergyButtonsApear(string pokemon)
+	{
+		if (PanelConfirmationController.yesButtonPressed)
+		{
+			selectedPokemonForEnergy = pokemon;
+			energyButtonGroup.SetActive (true);
+			PanelController.selectingPokemonForEnergy = false;
+			PanelController.selectingEnergy = true;
+		}
+	}
+
+	public void EnergySelected(Spell.Type type)
+	{
+		if (GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().activePokemon.name == selectedPokemonForEnergy)
+		{
+			GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().activePokemon.addEnergy (type);
+			PanelController.selectingEnergy = false;
+			PanelController.askForAttacking = true;
+			energyButtonGroup.SetActive (false);
+			panel.GetComponent<PanelController> ().changeText ();
+			panel.SetActive (true);
+		}
+		else
+		{
+			for (int i = 0; i < GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().banc.Count; ++i)
+			{
+				if (selectedPokemonForEnergy == GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc[i].name)
+				{
+					GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().banc [i].addEnergy (type);
+					PanelController.selectingEnergy = false;
+					PanelController.askForAttacking = true;
+					energyButtonGroup.SetActive (false);
+					panel.GetComponent<PanelController> ().changeText ();
+					panel.SetActive (true);
+				}
+
+			}	
+		}
+
+	}
+
 	public void ShowFinishButton()
 	{
 		buttonFinish.SetActive (true);
@@ -249,6 +306,14 @@ public class PokemonEventHandler : MonoBehaviour {
 
 		Spell[] toShow = GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().activePokemon.GetAvailableSpells();
 
+		if (toShow.Length == 0)
+		{
+			spellPanel.SetActive (false);
+			PanelController.selectingCapacity = false;
+			PanelController.changingTurn = true;
+			panel.GetComponent<PanelController> ().changeText ();	
+		}
+
 		for (int i = 0; i < toShow.Length; ++i)
 		{
 			GameObject goButtonSpell = Instantiate (prefabButtonSpell) as GameObject;
@@ -267,12 +332,30 @@ public class PokemonEventHandler : MonoBehaviour {
 
 	public void SpellButtonClicked(Spell.Type m_type, int p_damage)
 	{
+
+		GameObject spell;
 		switch (m_type)
 		{
 
 		case Spell.Type.Plant:
 			DestroySpellButtons ();
-			GameObject spell = chenipanSpell.transform.Find ("WaterShower").gameObject;
+			spell = chenipanSpell.transform.Find ("WaterShower").gameObject;
+			StartCoroutine (Wait (spell));
+			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints -= p_damage;
+			if (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints <= 0)
+			{
+				PanelController.activePokemonDead = true;
+				PanelController.nbPokemonDead++;
+			}
+			spellPanel.SetActive (false);
+			PanelController.selectingCapacity = false;
+			PanelController.changingTurn = true;
+			panel.GetComponent<PanelController> ().changeText ();
+			break;
+
+		case Spell.Type.Water:
+			DestroySpellButtons ();
+			spell = ptitardSpell.transform.Find ("WaterShower").gameObject;
 			StartCoroutine (Wait (spell));
 			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints -= p_damage;
 			if (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints <= 0)
@@ -343,9 +426,23 @@ public class PokemonEventHandler : MonoBehaviour {
 				panel.GetComponent<PanelController> ().changeText ();
 			}
 		}
-		else 
+		else if (PanelController.selectingPokemonForEnergy)
 		{
-			Debug.Log ("Pas dans le bon etat");
+			for (int i = 0; i < GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().banc.Count; ++i)
+			{
+				Debug.Log ("Banc : " + GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().banc [i].name);
+				Debug.Log ("Name : " + name);
+				if (name == GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().banc[i].name)
+				{
+					found = true;
+				}
+
+			}
+
+			if (found || name == GameObject.Find (panel.GetComponent<PanelController> ().activePlayer).GetComponent<PlayerScript> ().activePokemon.name)
+			{
+				panelConfirmation.GetComponent<PanelConfirmationController> ().askForConfirmation (name);
+			}
 		}
 	}
 
@@ -383,6 +480,7 @@ public class PokemonEventHandler : MonoBehaviour {
 		pokemonList = new PokemonList ();
 
 		chenipanSpell.transform.Find ("WaterShower").gameObject.SetActive (false);
+		ptitardSpell.transform.Find ("WaterShower").gameObject.SetActive (false);
 
 		spellList = new List<GameObject> ();
 		

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraFocusController.cs" />
+     <Compile Include="Assets\Scripts\EnergyButtonGroupController.cs" />
      <Compile Include="Assets\Scripts\FinishButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\EnergyButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\EvolPokeButtonController.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\Pokemon.cs" />
      <Compile Include="Assets\Scripts\PokemonEventHandler.cs" />
      <Compile Include="Assets\Scripts\PokemonList.cs" />
+     <Compile Include="Assets\Scripts\SelectEnergyButtonController.cs" />
      <Compile Include="Assets\Scripts\Spell.cs" />
      <Compile Include="Assets\Scripts\SpellButtonController.cs" />
      <Compile Include="Assets\Scripts\SpellPanelController.cs" />
@@ -102,8 +104,8 @@
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
      <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
-     <None Include="Assets\Vuforia\Shaders\RenderVideoBackground.shader" />
      <None Include="Assets\StreamingAssets\Vuforia\PokemonTCG_AR.xml" />
+     <None Include="Assets\Vuforia\Shaders\RenderVideoBackground.shader" />
      <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />

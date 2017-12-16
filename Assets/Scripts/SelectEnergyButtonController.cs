@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyButtonController : MonoBehaviour {
+public class SelectEnergyButtonController : MonoBehaviour {
 
+	public Spell.Type type;
 	Button button;
 	PokemonEventHandler pokemonEventHandler;
 
 	// Use this for initialization
 	void Start () {
-
-		gameObject.SetActive (false);
 
 		button = GetComponent<Button> ();
 		button.onClick.AddListener (OnClick);
@@ -21,7 +20,7 @@ public class EnergyButtonController : MonoBehaviour {
 
 	void OnClick()
 	{
-		pokemonEventHandler.EnergyButtonClicked ();
+		pokemonEventHandler.EnergySelected (type);
 	}
 	
 	// Update is called once per frame

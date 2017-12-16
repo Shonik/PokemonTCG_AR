@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PokemonEventHandler.cs">
+    <Files>
+      <File FileName="Assets\Scripts\PanelController.cs" Line="149" Column="32" />
+      <File FileName="Assets\Scripts\PokemonEventHandler.cs" Line="276" Column="57" />
+      <File FileName="Assets\Scripts\PlayerScript.cs" Line="8" Column="28" />
+      <File FileName="Assets\Scripts\PanelConfirmationController.cs" Line="58" Column="4" />
+      <File FileName="Assets\Scripts\GameTurnButtons\PokeBancButtonController.cs" Line="18" Column="3" />
+      <File FileName="Assets\Scripts\Pokemon.cs" Line="126" Column="5" />
+      <File FileName="Assets\Scripts\Spell.cs" Line="19" Column="21" />
+      <File FileName="Assets\Scripts\PokemonList.cs" Line="27" Column="34" />
+      <File FileName="Assets\Scripts\SpellPanelController.cs" Line="10" Column="32" />
+      <File FileName="Assets\Scripts\SpellButtonController.cs" Line="24" Column="55" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

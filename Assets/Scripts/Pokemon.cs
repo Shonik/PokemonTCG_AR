@@ -61,17 +61,20 @@ public class Pokemon {
 		bool found = false;
 		int energyFound = 0;
 
+		List<Spell.Type> remainingEnergy = new List<Spell.Type> (energyAssigned);
+
 		for (int i = 0; i < spells.Length; ++i)
 		{
 			energyNeeded = spells[i].energyNeeded;
 
 			for (int j = 0; j < energyNeeded.Length; ++j)
 			{
-				for (int k = 0; k < energyAssigned.Count; ++k)
+				for (int k = 0; k < remainingEnergy.Count; ++k)
 				{
-					if (energyNeeded[j] == energyAssigned[k])
+					if (energyNeeded[j] == remainingEnergy[k])
 					{
 						found = true;
+						remainingEnergy.RemoveAt (k);
 					}
 				}
 
@@ -95,6 +98,8 @@ public class Pokemon {
 		energyFound = 0;
 		int index = 0;
 
+		remainingEnergy = new List<Spell.Type> (energyAssigned);
+
 		Spell[] toReturn = new Spell[nbSpells];
 
 
@@ -104,11 +109,12 @@ public class Pokemon {
 
 			for (int j = 0; j < energyNeeded.Length; ++j)
 			{
-				for (int k = 0; k < energyAssigned.Count; ++k)
+				for (int k = 0; k < remainingEnergy.Count; ++k)
 				{
-					if (energyNeeded[j] == energyAssigned[k])
+					if (energyNeeded[j] == remainingEnergy[k])
 					{
 						found = true;
+						remainingEnergy.RemoveAt (k);
 					}
 				}
 
@@ -125,8 +131,9 @@ public class Pokemon {
 				toReturn [index] = spells [i];
 				++index;
 
-
 			}
+
+			Debug.Log (energyNeeded.Length);
 				
 
 		}

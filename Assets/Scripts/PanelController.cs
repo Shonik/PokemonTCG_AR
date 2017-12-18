@@ -211,6 +211,7 @@ public class PanelController : MonoBehaviour {
 			pokemonEventHandler.ShowTrainerButton ();
 			pokemonEventHandler.ShowRetreatButton ();
 			pokemonEventHandler.ShowSpecCapButton ();
+			pokemonEventHandler.ShowPasserButton ();
 		}
 		else if (askForAttacking)
 		{

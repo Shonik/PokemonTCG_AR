@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\FinishButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\EnergyButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\EvolPokeButtonController.cs" />
+     <Compile Include="Assets\Scripts\GameTurnButtons\PasserButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\PokeBancButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\RetreatButtonController.cs" />
      <Compile Include="Assets\Scripts\GameTurnButtons\SpecCapButtonController.cs" />
@@ -104,13 +105,15 @@
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
      <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
-     <None Include="Assets\StreamingAssets\Vuforia\PokemonTCG_AR.xml" />
      <None Include="Assets\Vuforia\Shaders\RenderVideoBackground.shader" />
+     <None Include="Assets\StreamingAssets\Vuforia\PokemonTCG_AR.xml" />
+     <None Include="Assets\Pokemon3DModels\gastly\HELP AND README.txt" />
      <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Vuforia\Editor\WebcamProfiles\profiles.xml" />
      <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
+     <None Include="Assets\Pokemon3DModels\voltorb\HELP AND README.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
      <None Include="Assets\Pokemon3DModels\caterpie\HELP AND README.txt" />

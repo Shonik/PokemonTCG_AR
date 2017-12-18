@@ -18,6 +18,7 @@ public class PokemonEventHandler : MonoBehaviour {
 	public GameObject buttonTrainer;
 	public GameObject buttonRetreat;
 	public GameObject buttonSpecCap;
+	public GameObject buttonPasser;
 
 	public GameObject prefabButtonSpell;
 	public GameObject spellPanel;
@@ -25,6 +26,8 @@ public class PokemonEventHandler : MonoBehaviour {
 
 	public GameObject chenipanSpell;
 	public GameObject ptitardSpell;
+	public GameObject voltorbeSpell;
+	public GameObject fantominusSpell;
 
 	public void PokemonDetected(string pokemon)
 	{
@@ -203,11 +206,29 @@ public class PokemonEventHandler : MonoBehaviour {
 		buttonTrainer.SetActive (false);
 		buttonRetreat.SetActive (false);
 		buttonSpecCap.SetActive (false);
+		buttonPasser.SetActive (false);
 
 		buttonFinish.SetActive (true);
 
 		PanelController.waitingForSelectAction = false;
 		PanelController.addingBancPoke = true;
+	}
+
+	public void PasserButtonClicked()
+	{
+		buttonPokeBanc.SetActive (false);
+		buttonEvolPoke.SetActive (false);
+		buttonEnergy.SetActive (false);
+		buttonTrainer.SetActive (false);
+		buttonRetreat.SetActive (false);
+		buttonSpecCap.SetActive (false);
+		buttonPasser.SetActive (false);
+
+		PanelController.waitingForSelectAction = false;
+		PanelController.askForAttacking = true;
+
+		panel.GetComponent<PanelController> ().changeText ();
+		panel.SetActive (true);
 	}
 
 	public void EnergyButtonClicked()
@@ -218,6 +239,7 @@ public class PokemonEventHandler : MonoBehaviour {
 		buttonTrainer.SetActive (false);
 		buttonRetreat.SetActive (false);
 		buttonSpecCap.SetActive (false);
+		buttonPasser.SetActive (false);
 
 		PanelController.waitingForSelectAction = false;
 		PanelController.selectingPokemonForEnergy = true;
@@ -299,6 +321,11 @@ public class PokemonEventHandler : MonoBehaviour {
 		buttonSpecCap.SetActive (true);
 	}
 
+	public void ShowPasserButton()
+	{
+		buttonPasser.SetActive (true);
+	}
+
 	public void MakeCapacityAppear()
 	{
 
@@ -356,6 +383,38 @@ public class PokemonEventHandler : MonoBehaviour {
 		case Spell.Type.Water:
 			DestroySpellButtons ();
 			spell = ptitardSpell.transform.Find ("WaterShower").gameObject;
+			StartCoroutine (Wait (spell));
+			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints -= p_damage;
+			if (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints <= 0)
+			{
+				PanelController.activePokemonDead = true;
+				PanelController.nbPokemonDead++;
+			}
+			spellPanel.SetActive (false);
+			PanelController.selectingCapacity = false;
+			PanelController.changingTurn = true;
+			panel.GetComponent<PanelController> ().changeText ();
+			break;
+
+		case Spell.Type.Psy:
+			DestroySpellButtons ();
+			spell = fantominusSpell.gameObject;
+			StartCoroutine (Wait (spell));
+			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints -= p_damage;
+			if (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints <= 0)
+			{
+				PanelController.activePokemonDead = true;
+				PanelController.nbPokemonDead++;
+			}
+			spellPanel.SetActive (false);
+			PanelController.selectingCapacity = false;
+			PanelController.changingTurn = true;
+			panel.GetComponent<PanelController> ().changeText ();
+			break;
+
+		case Spell.Type.Lightning:
+			DestroySpellButtons ();
+			spell = voltorbeSpell.gameObject;
 			StartCoroutine (Wait (spell));
 			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints -= p_damage;
 			if (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.lifePoints <= 0)
@@ -481,6 +540,8 @@ public class PokemonEventHandler : MonoBehaviour {
 
 		chenipanSpell.transform.Find ("WaterShower").gameObject.SetActive (false);
 		ptitardSpell.transform.Find ("WaterShower").gameObject.SetActive (false);
+		fantominusSpell.gameObject.SetActive (false);
+		voltorbeSpell.gameObject.SetActive (false);
 
 		spellList = new List<GameObject> ();
 		

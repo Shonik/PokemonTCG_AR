@@ -76,6 +76,14 @@ namespace Vuforia
 					{
 						pokemonEventHandler.PokemonTouched ("Ptitard");
 					}
+					else if (raycastHit.collider.name == "ImageTargetVoltorbe")
+					{
+						pokemonEventHandler.PokemonTouched ("Voltorbe");
+					}
+					else if (raycastHit.collider.name == "ImageTargetFantominus")
+					{
+						pokemonEventHandler.PokemonTouched ("Fantominus");
+					}
 				}
 			}
 		}

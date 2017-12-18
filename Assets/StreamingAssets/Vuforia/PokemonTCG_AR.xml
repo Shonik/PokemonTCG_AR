@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="energie-plante" size="5.000000 7.005254" />
-    <ImageTarget name="energie-eau" size="5.000000 7.022472" />
+    <ImageTarget name="fanto" size="5.000000 6.993007" />
+    <ImageTarget name="voltorbe" size="5.000000 6.944445" />
     <ImageTarget name="chenipan" size="5.000000 6.938597" />
     <ImageTarget name="ptitard" size="5.000000 6.938597" />
   </Tracking>

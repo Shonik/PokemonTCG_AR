@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spell {
 
-	public enum Type {Fire, Water, Plant, Neutral};
+	public enum Type {Fire, Water, Plant, Neutral, Psy, Lightning};
 
 	public string name;
 	public string description;

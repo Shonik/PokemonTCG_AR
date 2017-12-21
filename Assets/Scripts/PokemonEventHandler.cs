@@ -266,6 +266,7 @@ public class PokemonEventHandler : MonoBehaviour {
 			energyButtonGroup.SetActive (false);
 			panel.GetComponent<PanelController> ().changeText ();
 			panel.SetActive (true);
+			Debug.Log ("Active pokemon energy");
 		}
 		else
 		{
@@ -373,6 +374,7 @@ public class PokemonEventHandler : MonoBehaviour {
 			{
 				PanelController.activePokemonDead = true;
 				PanelController.nbPokemonDead++;
+				GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.destroyImage ();
 			}
 			spellPanel.SetActive (false);
 			PanelController.selectingCapacity = false;
@@ -389,6 +391,7 @@ public class PokemonEventHandler : MonoBehaviour {
 			{
 				PanelController.activePokemonDead = true;
 				PanelController.nbPokemonDead++;
+				GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.destroyImage ();
 			}
 			spellPanel.SetActive (false);
 			PanelController.selectingCapacity = false;
@@ -405,6 +408,7 @@ public class PokemonEventHandler : MonoBehaviour {
 			{
 				PanelController.activePokemonDead = true;
 				PanelController.nbPokemonDead++;
+				GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.destroyImage ();
 			}
 			spellPanel.SetActive (false);
 			PanelController.selectingCapacity = false;
@@ -421,6 +425,7 @@ public class PokemonEventHandler : MonoBehaviour {
 			{
 				PanelController.activePokemonDead = true;
 				PanelController.nbPokemonDead++;
+				GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon.destroyImage ();
 			}
 			spellPanel.SetActive (false);
 			PanelController.selectingCapacity = false;
@@ -512,14 +517,17 @@ public class PokemonEventHandler : MonoBehaviour {
 			Pokemon p = null;
 			for (int i = 0; i < GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc.Count; ++i)
 			{
-				if (name == GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc[i].name)
+				Debug.Log (pokemon);
+				Debug.Log (GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc [i].name);
+				if (pokemon == GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc[i].name)
 				{
 					p = GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc [i];
 				}
 
 			}
 
-			GameObject.Find (panel.GetComponent<PanelController>().enemyPlayer).GetComponent<PlayerScript> ().AddPokemonBancPlayer(p);
+			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().activePokemon = p.Clone ();;
+			GameObject.Find (panel.GetComponent<PanelController> ().enemyPlayer).GetComponent<PlayerScript> ().banc.Remove(p);
 			PanelController.waitForNewActivePokemon = false;
 			PanelController.activePokemonDead = false;
 			PanelController.askForNewActivePokemon = true;

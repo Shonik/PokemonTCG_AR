@@ -12,6 +12,7 @@ public class PanelController : MonoBehaviour {
 	public string activePlayer;
 	public string enemyPlayer;
 	string displayName;
+	string enemyDisplayName;
 	Color textColor;
 	Color enemyTextColor;
 
@@ -98,7 +99,7 @@ public class PanelController : MonoBehaviour {
 		{
 			showPokemon = false;
 			text.color = Color.blue;
-			text.text = "Joueur 1 : présentez votre Pokemon actif. Si vous n'en avez pas, repiochez.";
+			text.text = "Joueur 1 : présentez votre Pokémon actif. Si vous n'en avez pas, repiochez.";
 			waitingForActivePokemonP1 = true;
 		}
 		else if (waitingForActivePokemonP1)
@@ -109,7 +110,7 @@ public class PanelController : MonoBehaviour {
 		{	
 			askForActivePokemonP2 = false;
 			text.color = Color.red;
-			text.text = "Joueur 2 : présentez votre Pokemon actif. Si vous n'en avez pas, repiochez.";
+			text.text = "Joueur 2 : présentez votre Pokémon actif. Si vous n'en avez pas, repiochez.";
 			waitingForActivePokemonP2 = true;
 		}
 		else if (waitingForActivePokemonP2)
@@ -120,7 +121,7 @@ public class PanelController : MonoBehaviour {
 		{
 			askForBancPokemonP1 = false;
 			text.color = Color.blue;
-			text.text = "Joueur 1 : présentez vos Pokemons de banc et appuyer sur Terminer.";
+			text.text = "Joueur 1 : présentez vos Pokémon de banc et appuyer sur Terminer.";
 			waitingForBancPokemonP1 = true;
 		}
 		else if (waitingForBancPokemonP1)
@@ -132,7 +133,7 @@ public class PanelController : MonoBehaviour {
 		{
 			askForBancPokemonP2 = false;
 			text.color = Color.red;
-			text.text = "Joueur 2 : présentez vos Pokemons de banc et appuyer sur Terminer.";
+			text.text = "Joueur 2 : présentez vos Pokémon de banc et appuyer sur Terminer.";
 			waitingForBancPokemonP2 = true;
 		}
 		else if (waitingForBancPokemonP2)
@@ -145,7 +146,7 @@ public class PanelController : MonoBehaviour {
 			askForRewardCards = false;
 			setupGame = false;
 			text.color = Color.black;
-			text.text = "Piochez les 6 cartes du dessus de votre deck et placez les en tant que cartes recompenses face cachée.";
+			text.text = "Piochez les 6 cartes du dessus de votre deck et placez les en tant que cartes récompenses face cachée.";
 			waitingForRewardCards = true;
 		}
 		else if (waitingForRewardCards)
@@ -161,7 +162,7 @@ public class PanelController : MonoBehaviour {
 			gameObject.SetActive (true);
 			askForNewActivePokemon = false;
 			text.color = enemyTextColor;
-			text.text = enemyPlayer + " : selectionnez un de vos Pokemon de banc pour en faire votre Pokemon actif.";
+			text.text = enemyDisplayName + " : selectionnez un de vos Pokémon de banc pour en faire votre Pokémon actif.";
 			waitForNewActivePokemon = true;
 		}
 		else if (waitForNewActivePokemon)
@@ -183,6 +184,7 @@ public class PanelController : MonoBehaviour {
 		activePlayer = turn == 1 ? "Player1" : "Player2";
 		enemyPlayer = turn == 1 ? "Player2" : "Player1";
 		displayName = turn == 1 ? "Joueur 1" : "Joueur 2";
+		enemyDisplayName = turn == 1 ? "Joueur 2" : "Joueur 1";
 		textColor = turn == 1 ? Color.blue : Color.red;
 		enemyTextColor = turn == 1 ? Color.red : Color.blue;
 

@@ -12,6 +12,7 @@ public class Pokemon {
 	public Spell[] spells;
 	public Pokemon.State state;
 	public List<Spell.Type> energyAssigned;
+	private GameObject imageTarget;
 
 
 
@@ -25,6 +26,13 @@ public class Pokemon {
 		state = Pokemon.State.Normal;
 		energyAssigned = new List<Spell.Type> ();
 
+		imageTarget = GameObject.Find ("ImageTarget" + name);
+
+	}
+
+	public void destroyImage()
+	{
+		imageTarget.SetActive(false);
 	}
 
 	public Pokemon Clone()
